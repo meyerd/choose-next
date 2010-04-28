@@ -164,15 +164,6 @@ def main(argv=sys.argv):
         'name to stdout. Afterwards it is appended to a log file. Only '\
         'files which are not in log file are considered for selection.\n'\
         'Tries to choose the file which is next in lexical order in DIR.'
-    mooosay = ''' ______________
-< I choose ... >
- --------------
-        \\   ^__^
-         \\  (oo)\\_______
-            (__)\\       )\\/\\
-                ||----w |
-                ||     ||'''
-
 
     logdir_default = '~' + os.path.sep + '.choose_next'
     logdir = os.getenv('CHOOSE_NEXT_LOGDIR', logdir_default)
@@ -213,16 +204,10 @@ def main(argv=sys.argv):
         help='be verbose (can be used multiple times)')
     parser.add_option('-w', '--no-write', action='store_true',
         default=False, help='don\'t record selected files to log file')
-    parser.add_option('--mooo', action='store_true',
-	default=False, help='this program has cow-powers')
 
     (options, args) = parser.parse_args(argv[1:])
     verbosity = options.verbosity
     prog_name = parser.get_prog_name()
-    if options.mooo:
-	print mooosay
-	return 0
-
     if not args:
         error('error, no directory specified\n'\
                 'Try `%s --help\' for more information.', prog_name)
